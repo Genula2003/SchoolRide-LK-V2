@@ -1,0 +1,24 @@
+{
+  "name": "schoolride-lk",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SchoolRide LK — Trustworthy School Transportation Platform for Sri Lanka",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "pnpm --filter @schoolride/api dev & pnpm --filter @schoolride/web dev",
+    "build": "pnpm --filter @schoolride/shared build && pnpm --filter @schoolride/api build && pnpm --filter @schoolride/web build",
+    "test": "pnpm --filter @schoolride/shared test && pnpm --filter @schoolride/api test",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "db:migrate": "pnpm --filter @schoolride/api db:migrate",
+    "db:seed": "pnpm --filter @schoolride/api db:seed"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.2",
+    "tsx": "^4.23.15",
+    "typescript": "^5.8.2"
+  }
+}

@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;      /* #F8FAFC crisp light neutral surface */
+    --foreground: 222 47% 11%;      /* #0F172A deep ink text */
+
+    --card: 0 0% 100%;              /* #FFFFFF pure elevated surface */
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 221 83% 53%;         /* #2563EB confident cobalt primary */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96%;       /* #F1F5F9 clean secondary */
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 214 32% 91%;           /* #E2E8F0 subtle divider/muted */
+    --muted-foreground: 215 16% 47%;/* #64748B readable slate */
+
+    --accent: 38 92% 50%;           /* #F59E0B Sri Lankan Ceylon Amber */
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;       /* #EF4444 clear error/alert */
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;          /* #E2E8F0 1px precision hairline borders */
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.625rem;             /* 10px tuned modern corner radius */
+  }
+
+  .dark {
+    --background: 222 47% 7%;       /* #090D16 rich dark ink background */
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;            /* #0F172A elevated dark card */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;         /* #3B82F6 vibrant blue in dark mode */
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Emil Kowalski Interaction Patterns & Transitions */
+.emil-press {
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.12s ease;
+}
+.emil-press:active {
+  transform: scale(0.975);
+}
+
+.emil-card-hover {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.emil-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+}
+
+/* Map marker custom styles */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius);
+  z-index: 10;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.4);
+}
