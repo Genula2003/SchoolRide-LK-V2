@@ -328,7 +328,7 @@ export class DriversService {
     return this.prisma.vehicle.create({
       data: {
         driverProfileId: driver.id,
-        vehicleType: input.vehicleType,
+        vehicleType: input.vehicleType as any,
         make: input.make,
         model: input.model,
         year: input.year,
@@ -340,7 +340,7 @@ export class DriversService {
         hasFirstAidKit: input.hasFirstAidKit,
         insuranceExpiry: input.insuranceExpiry,
         revenueLicenseExpiry: input.revenueLicenseExpiry,
-        verificationStatus: VerificationStatus.PENDING,
+        verificationStatus: VerificationStatus.PENDING as any,
       },
     });
   }
@@ -375,7 +375,7 @@ export class DriversService {
           driverProfileId: driver.id,
           district: input.serviceDistricts[0] || 'Colombo',
           city: input.operatingAreas[0] || 'Colombo',
-          operatingAreas: JSON.stringify(input.operatingAreas) as any,
+          operatingAreas: input.operatingAreas,
           monthlyRateMinorUnits: input.monthlyRatePerChild,
         },
       }),

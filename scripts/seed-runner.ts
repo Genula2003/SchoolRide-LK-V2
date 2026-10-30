@@ -122,7 +122,7 @@ export async function seedDatabaseWithClient(prisma: PrismaClient) {
       driverProfileId: driver1Profile.id,
       district: 'Colombo',
       city: 'Nugegoda',
-      operatingAreas: JSON.stringify(['Nugegoda', 'Maharagama', 'Kotte', 'Bambalapitiya', 'Cinnamon Gardens']),
+      operatingAreas: ['Nugegoda', 'Maharagama', 'Kotte', 'Bambalapitiya', 'Cinnamon Gardens'],
       monthlyRateMinorUnits: 1800000,
     },
   });

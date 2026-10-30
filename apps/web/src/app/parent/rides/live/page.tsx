@@ -93,7 +93,7 @@ export default function ParentLiveTrackingPage() {
     if (!activeRide?.id) return;
 
     const token = typeof window !== 'undefined' ? localStorage.getItem('sr_token') : null;
-    const socketUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+    const socketUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 
     const socket: Socket = io(socketUrl, {
       auth: { token },

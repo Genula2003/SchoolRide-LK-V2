@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import { Button } from './button';
 
 interface EmptyStateProps {
-  icon: React.ReactNode | React.ComponentType<{ className?: string }>;
+  icon?: React.ReactNode | React.ComponentType<{ className?: string }>;
   title: string;
   description: string;
   actionLabel?: string;
@@ -24,7 +24,15 @@ export function EmptyState({
   action,
   className,
 }: EmptyStateProps) {
-  const IconComponent = typeof icon === 'function' ? (icon as React.ComponentType<{ className?: string }>) : null;
+  const renderIcon = () => {
+    if (!icon) return null;
+    if (React.isValidElement(icon)) {
+      return icon;
+    }
+    // Handles Lucide icons (forwardRef objects) and functional components in React 19
+    const IconComponent = icon as React.ComponentType<{ className?: string }>;
+    return <IconComponent className="h-7 w-7" />;
+  };
 
   return (
     <div
@@ -33,9 +41,11 @@ export function EmptyState({
         className,
       )}
     >
-      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-4 shadow-subtle">
-        {IconComponent ? <IconComponent className="h-7 w-7" /> : (icon as React.ReactNode)}
-      </div>
+      {icon && (
+        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary mb-4 shadow-subtle">
+          {renderIcon()}
+        </div>
+      )}
       <h3 className="text-base font-semibold text-foreground mb-1">{title}</h3>
       <p className="text-sm text-muted-foreground max-w-sm mb-6 leading-relaxed">{description}</p>
       {(action || (actionLabel && onAction)) && (
